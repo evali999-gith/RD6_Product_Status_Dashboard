@@ -1279,6 +1279,12 @@
             const currentStages = getStagesForCategory(product.category, product.name);
             const stageIndex = currentStages.indexOf(product.stage);
             const progressPercent = stageIndex >= 0 ? ((stageIndex + 1) / currentStages.length) * 100 : 0;
+            const isWeeklyWorkSection = [product.name, product.category, product.id, product.description]
+                .filter(Boolean)
+                .some(value => /本周工作|本週工作/.test(String(value)));
+            const progressTrackClassAttr = isWeeklyWorkSection ? '' : ' class="progress-track"';
+            const progressFillClassAttr = isWeeklyWorkSection ? '' : ' class="progress-fill"';
+            const progressNodesClassAttr = isWeeklyWorkSection ? '' : ' class="progress-nodes"';
 
             const owners = [];
             if (product.owner1) owners.push({ name: product.owner1, color: product.owner1Color });
@@ -1330,10 +1336,9 @@
                     </div>
                     <div class="progress-section">
                         <div class="progress-bar-container">
-                            <!--<div class="progress-track"></div>-->
-                            <!--<div class="progress-fill" style="width: ${progressPercent}%"></div>-->
-                            <!--
-                            <div class="progress-nodes">
+                            <div${progressTrackClassAttr}></div>
+                            <div${progressFillClassAttr} style="width: ${progressPercent}%"></div>
+                            <div${progressNodesClassAttr}>
                                 ${currentStages.map((stage, i) => {
                                     const safeStage = escapeHtml(stage);
                                     return `
@@ -1344,7 +1349,6 @@
                                 `;
                                 }).join('')}
                             </div>
-                            -->
                         </div>
                     </div>
                     ${historyItems.length > 0 ? `
