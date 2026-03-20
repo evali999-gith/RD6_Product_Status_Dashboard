@@ -1265,7 +1265,7 @@
                             <h2>${escapeHtml(category)}</h2>
                         </div>
                         <div class="cards-grid">
-                            ${grouped[category].map(p => createProductCard(p)).join('')}
+                            ${grouped[category].map(p => createProductCard(p, category)).join('')}
                         </div>
                     </div>
                 `;
@@ -1274,17 +1274,18 @@
             document.getElementById('productsContainer').innerHTML = html;
         }
 
-        function createProductCard(product) {
+        function createProductCard(product, category = '') {
             // 根據產品名稱決定使用哪組階段
             const currentStages = getStagesForCategory(product.category, product.name);
             const stageIndex = currentStages.indexOf(product.stage);
             const progressPercent = stageIndex >= 0 ? ((stageIndex + 1) / currentStages.length) * 100 : 0;
-            const isWeeklyWorkSection = [product.name, product.category, product.id, product.description]
-                .filter(Boolean)
-                .some(value => /本周工作|本週工作/.test(String(value)));
+            const isWeeklyWorkSection = /本周工作|本週工作/.test(String(category));
+            const progressSectionClassAttr = isWeeklyWorkSection ? '' : ' class="progress-section"';
+            const progressBarContainerClassAttr = isWeeklyWorkSection ? '' : ' class="progress-bar-container"';
             const progressTrackClassAttr = isWeeklyWorkSection ? '' : ' class="progress-track"';
             const progressFillClassAttr = isWeeklyWorkSection ? '' : ' class="progress-fill"';
             const progressNodesClassAttr = isWeeklyWorkSection ? '' : ' class="progress-nodes"';
+            const progressNodeClassAttr = isWeeklyWorkSection ? '' : ' class="progress-node"';
 
             const owners = [];
             if (product.owner1) owners.push({ name: product.owner1, color: product.owner1Color });
@@ -1334,17 +1335,19 @@
                             ` : ''}
                         </div>
                     </div>
-                    <div class="progress-section">
-                        <div class="progress-bar-container">
+                    <div${progressSectionClassAttr}>
+                        <div${progressBarContainerClassAttr}>
                             <div${progressTrackClassAttr}></div>
                             <div${progressFillClassAttr} style="width: ${progressPercent}%"></div>
                             <div${progressNodesClassAttr}>
                                 ${currentStages.map((stage, i) => {
                                     const safeStage = escapeHtml(stage);
+                                    const nodeDotClassAttr = isWeeklyWorkSection ? '' : ` class="node-dot ${i <= stageIndex ? 'active' : ''}"`;
+                                    const nodeLabelClassAttr = isWeeklyWorkSection ? '' : ` class="node-label ${i <= stageIndex ? 'active' : ''}"`;
                                     return `
-                                    <div class="progress-node">
-                                        <div class="node-dot ${i <= stageIndex ? 'active' : ''}"></div>
-                                        <span class="node-label ${i <= stageIndex ? 'active' : ''}">${safeStage}</span>
+                                    <div${progressNodeClassAttr}>
+                                        <div${nodeDotClassAttr}></div>
+                                        <span${nodeLabelClassAttr}>${safeStage}</span>
                                     </div>
                                 `;
                                 }).join('')}
