@@ -1339,11 +1339,12 @@
                         <div${progressBarContainerClassAttr}>
                             <div${progressTrackClassAttr}></div>
                             <div${progressFillClassAttr} style="width: ${progressPercent}%"></div>
+                            ${isWeeklyWorkSection ? '' : `
                             <div${progressNodesClassAttr}>
                                 ${currentStages.map((stage, i) => {
                                     const safeStage = escapeHtml(stage);
-                                    const nodeDotClassAttr = isWeeklyWorkSection ? '' : ` class="node-dot ${i <= stageIndex ? 'active' : ''}"`;
-                                    const nodeLabelClassAttr = isWeeklyWorkSection ? '' : ` class="node-label ${i <= stageIndex ? 'active' : ''}"`;
+                                    const nodeDotClassAttr = ` class="node-dot ${i <= stageIndex ? 'active' : ''}"`;
+                                    const nodeLabelClassAttr = ` class="node-label ${i <= stageIndex ? 'active' : ''}"`;
                                     return `
                                     <div${progressNodeClassAttr}>
                                         <div${nodeDotClassAttr}></div>
@@ -1352,6 +1353,7 @@
                                 `;
                                 }).join('')}
                             </div>
+                            `}
                         </div>
                     </div>
                     ${historyItems.length > 0 ? `
