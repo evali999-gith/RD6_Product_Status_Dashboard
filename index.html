@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0061)https://evali999-gith.github.io/RD6_Product_Status_Dashboard/ -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 安全標頭：Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self';
-        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com https://script.google.com https://script.googleusercontent.com;
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-        font-src 'self' https://fonts.gstatic.com;
-        img-src 'self' https: data:;
-        connect-src 'self' https://script.google.com https://script.googleusercontent.com;
-        frame-ancestors 'none';
-        base-uri 'self';
-        form-action 'self';
+        default-src &#39;self&#39;;
+        script-src &#39;self&#39; &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com https://script.google.com https://script.googleusercontent.com;
+        style-src &#39;self&#39; &#39;unsafe-inline&#39; https://fonts.googleapis.com;
+        font-src &#39;self&#39; https://fonts.gstatic.com;
+        img-src &#39;self&#39; https: data:;
+        connect-src &#39;self&#39; https://script.google.com https://script.googleusercontent.com;
+        frame-ancestors &#39;none&#39;;
+        base-uri &#39;self&#39;;
+        form-action &#39;self&#39;;
     ">
     
     <!-- 安全標頭：防止點擊劫持 -->
     <meta http-equiv="X-Frame-Options" content="DENY">
-    <!--test-->>
+    <!--test--><script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head><body data-new-gr-c-s-check-loaded="14.1282.0" data-gr-ext-installed="">&gt;
     
     <!-- 安全標頭：防止 MIME 類型嗅探 -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -31,8 +31,8 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
     <title>RD6產品開發進度戰情室</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';document.head.appendChild(s);"></script>
+    <link href="./RD6產品開發進度戰情室20260414_files/css2" rel="stylesheet">
+    <script src="./RD6產品開發進度戰情室20260414_files/xlsx.full.min.js.下載" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="var s=document.createElement(&#39;script&#39;);s.src=&#39;https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js&#39;;document.head.appendChild(s);"></script>
     <style>
         :root {
             --primary: #1a3a6e;
@@ -59,7 +59,7 @@
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background: linear-gradient(160deg, #0c1929 0%, #152444 50%, #1a2e5a 100%);
+            background: linear-gradient(160deg,#4682b4 0%, #35628a 100%);
             min-height: 100vh;
             padding: 2rem;
             color: var(--gray-900);
@@ -707,13 +707,13 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
-</head>
-<body>
+
+
     <div class="container">
         <header>
             <div class="header-top">
                 <div>
-                    <h1>🎯 RD6產品開發進度戰情室</h1>
+                    <h1>RD6產品開發進度戰情室</h1>
                 </div>
                 <div class="upload-section">
                     <button onclick="reloadGoogleSheets()" class="btn btn-warning" id="reloadBtn">
@@ -733,7 +733,7 @@
             
             <div class="data-source-info">
                 <span>資料來源：</span>
-                <span class="source-badge" id="sourceIndicator">載入中...</span>
+                <span class="source-badge source-google" id="sourceIndicator">Google Sheets (自動同步)</span>
             </div>
             
             <div class="toolbar">
@@ -742,9 +742,7 @@
                     <input type="text" id="searchInput" placeholder="搜尋產品名稱或編號..." onkeyup="filterProducts()">
                 </div>
                 <div class="filter-group">
-                    <select id="categoryFilter" onchange="filterProducts()">
-                        <option value="">全部類別</option>
-                    </select>
+                    <select id="categoryFilter" onchange="filterProducts()"><option value="">全部類別</option><option value="本周工作">本周工作</option><option value="控制器">控制器</option><option value="開發軟體">開發軟體</option><option value="專案">專案</option></select>
                     <select id="progressFilter" onchange="filterProducts()">
                         <option value="">全部進度</option>
                         <option value="進行中">進行中</option>
@@ -789,15 +787,15 @@
         <div class="stats-grid" id="statsGrid">
             <div class="stat-card">
                 <div class="stat-label">總專案數</div>
-                <div class="stat-value" style="color: var(--primary);" id="totalCount">0</div>
+                <div class="stat-value" style="color: var(--primary);" id="totalCount">14</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">進行中</div>
-                <div class="stat-value" style="color: var(--warning);" id="ongoingCount">0</div>
+                <div class="stat-value" style="color: var(--warning);" id="ongoingCount">1</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">已上市</div>
-                <div class="stat-value" style="color: var(--success);" id="completedCount">0</div>
+                <div class="stat-value" style="color: var(--success);" id="completedCount">13</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">緊急項目</div>
@@ -805,17 +803,887 @@
             </div>
         </div>
 
-        <div id="ownerTracker" class="owner-tracker" style="display:none;"></div>
+        <div id="ownerTracker" class="owner-tracker" style="display: block;">
+                <div class="owner-tracker-title">📋 負責人更新狀態（由舊到新）</div>
+                <div class="owner-cards-row">
+                    <div class="owner-update-card" data-owner="唐佳鈴" style="border-left-color:var(--warning)">
+                        <div class="owner-update-avatar" style="background:#DC143C">佳鈴</div>
+                        <div>
+                            <div class="owner-update-name">唐佳鈴</div>
+                            <div class="owner-update-date">2026/03/23</div>
+                        </div>
+                        <div class="owner-update-days" style="background:#fef3c7;color:#92400e">21 天前</div>
+                    </div>
+                    <div class="owner-update-card" data-owner="林瑤萱" style="border-left-color:var(--success)">
+                        <div class="owner-update-avatar" style="background:#FF69B4">瑤萱</div>
+                        <div>
+                            <div class="owner-update-name">林瑤萱</div>
+                            <div class="owner-update-date">2026/04/13</div>
+                        </div>
+                        <div class="owner-update-days" style="background:#d1fae5;color:#065f46">0 天前</div>
+                    </div>
+                    <div class="owner-update-card" data-owner="黃建達" style="border-left-color:var(--success)">
+                        <div class="owner-update-avatar" style="background:#B8860B">建達</div>
+                        <div>
+                            <div class="owner-update-name">黃建達</div>
+                            <div class="owner-update-date">2026/04/14</div>
+                        </div>
+                        <div class="owner-update-days" style="background:#d1fae5;color:#065f46">-1 天前</div>
+                    </div>
+                    <div class="owner-update-card" data-owner="鄭文祥" style="border-left-color:var(--success)">
+                        <div class="owner-update-avatar" style="background:#9ABAC9">文祥</div>
+                        <div>
+                            <div class="owner-update-name">鄭文祥</div>
+                            <div class="owner-update-date">2026/04/14</div>
+                        </div>
+                        <div class="owner-update-days" style="background:#d1fae5;color:#065f46">-1 天前</div>
+                    </div>
+                    <div class="owner-update-card" data-owner="李郁華" style="border-left-color:var(--success)">
+                        <div class="owner-update-avatar" style="background:#ff4500">郁華</div>
+                        <div>
+                            <div class="owner-update-name">李郁華</div>
+                            <div class="owner-update-date">2026/04/14</div>
+                        </div>
+                        <div class="owner-update-days" style="background:#d1fae5;color:#065f46">-1 天前</div>
+                    </div>
+                    <div class="owner-update-card" data-owner="許承蓉" style="border-left-color:var(--success)">
+                        <div class="owner-update-avatar" style="background:#BA55D3">承蓉</div>
+                        <div>
+                            <div class="owner-update-name">許承蓉</div>
+                            <div class="owner-update-date">2026/04/14</div>
+                        </div>
+                        <div class="owner-update-days" style="background:#d1fae5;color:#065f46">-1 天前</div>
+                    </div></div></div>
 
         <div id="productsContainer">
-            <div class="empty-state">
-                <div class="empty-state-icon">
-                    <div class="loading"></div>
+                    <div class="category-section">
+                        <div class="category-header">
+                            <h2>本周工作</h2>
+                        </div>
+                        <div class="cards-grid">
+                            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/wingraf_syntax.jpg" alt="工作列表" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">工作列表</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">Spike</div>
+                            <div class="product-desc">每日主要</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-開發">開發</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #999"></span>
+                                    <span>客服</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div></div>
+                            <div style="width: 100%"></div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">4/13醫療產品採購問題</div><div class="history-item">4/9 到禾新驗收7186PPG</div><div class="history-item">4/7 修改7186PPG 通訊程式</div><div class="history-item">4/2 整理7186PPG 驗收事項</div><div class="history-item">4/1 </div><div class="history-item">3/23測試</div><div class="history-item">3/20 瑞弘技術討論會議</div><div class="history-item">3/19 uPAC-7586 for Win-GRAF </div><div class="history-item">3/17瑞弘專案和開會時程</div><div class="history-item">3/16禾新合約討論</div><div class="history-item">3/13 測試</div><div class="history-item">3/5: 瑞宏冷凍- 產品開發</div>
+                        </div>
+                    
                 </div>
-                <h3>載入資料中...</h3>
-                <p>正在從 Google Sheets 讀取產品資料</p>
-            </div>
-        </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/wingraf_syntax.jpg" alt="工作列表" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">工作列表</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">Asher</div>
+                            <div class="product-desc">每日主要</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-開發">開發</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #999"></span>
+                                    <span>客服</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #9ABAC9" title="鄭文祥">
+                                            文祥
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div></div>
+                            <div style="width: 100%"></div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">4/10 Redundancy, Lan port名稱設定問題處理</div><div class="history-item">4/07 凱鴻, XP8K Runtime安裝問題處理</div><div class="history-item">4/01 Redundancy Lan port設定功能測試</div><div class="history-item">3/31 Redundancy 測試IP設定功能</div><div class="history-item">3/25 協助eva建立RD6網頁, 更改連結google sheet</div><div class="history-item">3/24 橙設科技技術支援, modbus控制</div><div class="history-item">3/20 協助Sandy製作網站</div><div class="history-item">3/19 橙設科技, WP8K &amp; Win-GRAF 問題協助</div><div class="history-item">3/13 協助eva製作RD6 網頁 90%</div><div class="history-item">3/12 RD6 網頁製作 &amp; 測試 100%</div><div class="history-item">3/4 XP-9xx8-IoT11 Redundancy 20%</div><div class="history-item">3/4 Win-GRAF Runtime整理</div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/DB-logo-Eva.jpg" alt="工作列表" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">工作列表</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">Eva</div>
+                            <div class="product-desc">每日主要</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-文件">文件</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #999"></span>
+                                    <span>翻譯</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #ff4500" title="李郁華">
+                                            郁華
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div></div>
+                            <div style="width: 100%"></div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">4/10 UA新增[教學軟體]頁籤,各型號產品網頁增連結</div><div class="history-item">4/02 UA影片Modbus TCP - OPC UA上架</div><div class="history-item">4/01 UA韌體全系列更新(Beta) 100%</div><div class="history-item">3/27 UA網頁修改UA-2800產品圖 100%</div><div class="history-item">3/23 UA-28改機構, 修DS/QS/手冊ok上傳</div><div class="history-item">3/10-23 RD6 AI導入進度戰情表 80%</div><div class="history-item">3/19 AI 導入型錄週報 2nd教育訓練</div><div class="history-item">3/18 PACtech#85翻英2篇8頁 100% </div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/DB-logo-Lynn.jpg" alt="工作列表" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">工作列表</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">Lynn</div>
+                            <div class="product-desc">每日主要</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-翻譯">翻譯</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #999"></span>
+                                    <span>文件</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #DC143C" title="唐佳鈴">
+                                            佳鈴
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div></div>
+                            <div style="width: 100%"></div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">3/19 PACTECH_EN#85排版：智慧監控系統 20%</div><div class="history-item">3/18 PACTECH_EN#85排版：船艦系統整合 50%</div><div class="history-item">3/17 PACTECH_EN#85排版：EtherNet/IP 100%</div><div class="history-item">3/16 PACTECH_EN#85排版：南臺灣產研鏈結 100%</div><div class="history-item">3/12  LP-2648M 網頁資料補缺</div><div class="history-item">3/10  PACTECH_EN#85 文章排版 60%</div><div class="history-item">3/4  PACTECH_EN#85 翻英 四篇8頁 100%</div><div class="history-item">3/3  RPAC-9848 中文 更: 網頁產品圖遺失</div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/DB-logo-Carol.jpg" alt="工作列表" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">工作列表</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">Carol</div>
+                            <div class="product-desc">每日主要</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-翻譯">翻譯</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #999"></span>
+                                    <span>文件</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #BA55D3" title="許承蓉">
+                                            承蓉
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div></div>
+                            <div style="width: 100%"></div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">4/13 翻譯BRK 手冊第5-7章節內容及圖片 90%</div><div class="history-item">4/9 修改UA BR UA I/O及BRK章節 BRK圖片 20%</div><div class="history-item">4/9 修改UA I/O網頁BRK產品圖片100%</div><div class="history-item">4/9 BRK手冊修改章節順序 100%</div><div class="history-item">4/1 上傳BRK QS手冊至網頁 100%</div><div class="history-item">3/31 BRK QS手冊修改產品圖 100%</div><div class="history-item">3/31 修改BRK網頁內容 100%</div><div class="history-item">3/30 BRK 網頁修改產品圖 100%</div><div class="history-item">3/27 BRK 手冊修改產品圖 100%</div><div class="history-item">3/26  BRK Data Sheet 修改產品圖 100%</div><div class="history-item">3/25 教育訓練課程講師</div><div class="history-item">3/23 PM-3133i電錶手冊再修 100%</div><div class="history-item">3/19 PACtech翻英(2篇8頁)100% </div><div class="history-item">3/16 U-7500 網頁修改產品規格 100%</div><div class="history-item">3/10 教育訓練簡報/試題製作 100%</div><div class="history-item">3/10 PM-3133i電錶手冊英翻中 100%</div><div class="history-item">3/4 BRK手冊v2.1 內容更新 100%</div><div class="history-item">3/4 截圖簡中版News圖片 100%</div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/DB-logo-Sandy.jpg" alt="工作列表" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">工作列表</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">Sandy</div>
+                            <div class="product-desc">每日主要</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-手冊">手冊</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #999"></span>
+                                    <span>網頁</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #FF69B4" title="林瑤萱">
+                                            瑤萱
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div></div>
+                            <div style="width: 100%"></div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">4/13 EZ-UAQ 網頁:增 3.1.20(beta)軟體</div><div class="history-item">4/1 EZ-UAQ中文手冊改版_增新功能95%</div><div class="history-item">1/28-4/1 優化EZ-UAQ中文手冊內容/更換新軟體介面圖 100%</div><div class="history-item">3/27 BRK驗證散布圖提示詞(中)100%</div><div class="history-item">3/25 PM-3133-CPS網頁_更新韌體100%</div><div class="history-item">3/24 EZ-UAQ 網頁_更新Skills檔案100%</div><div class="history-item">3/23 EZ-UAQ 網頁_增提示詞x2 100%</div><div class="history-item">3/20-23 BRK驗證面積圖提示詞(英)100%</div><div class="history-item">3/19~20 BRK驗證面積圖提示詞(中)100%</div><div class="history-item">3/19 參加AI 導入課程_(更換網頁風格OK)</div><div class="history-item">3/13 EZ-UAQ 網頁_增提示詞x4 100%</div><div class="history-item">3/10-12 BRK驗證雷達圖提示詞(英)100%</div><div class="history-item">3/9-13 BRK驗證面積圖提示詞(英)100%</div>
+                        </div>
+                    
+                </div>
+            
+                        </div>
+                    </div>
+                
+                    <div class="category-section">
+                        <div class="category-header">
+                            <h2>控制器</h2>
+                        </div>
+                        <div class="cards-grid">
+                            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/XP-8038-CE6_la01.png" alt="Win-GRAF PAC" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">Win-GRAF PAC</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">XP-8x28-CE6</div>
+                            <div class="product-desc">控制器</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-一般">一般</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #1a5580"></span>
+                                    <span>發售</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar-container">
+                            <div class="progress-track"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
+                            
+                            <div class="progress-nodes">
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">規劃</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">研發</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">驗証</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">量產</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">上市</span>
+                                    </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">版本 2.4.0</div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/WP-8128-CE7_la01.png" alt="Win-GRAF PAC" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">Win-GRAF PAC</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">WP-8x28-CE7</div>
+                            <div class="product-desc">控制器</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-一般">一般</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #1a5580"></span>
+                                    <span>發售</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar-container">
+                            <div class="progress-track"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
+                            
+                            <div class="progress-nodes">
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">規劃</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">研發</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">驗証</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">量產</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">上市</span>
+                                    </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">版本 2.4.0</div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/WP-5238-CE7_la02.png" alt="Win-GRAF PAC" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">Win-GRAF PAC</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">WP-5238-CE7</div>
+                            <div class="product-desc">控制器</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-一般">一般</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #1a5580"></span>
+                                    <span>發售</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar-container">
+                            <div class="progress-track"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
+                            
+                            <div class="progress-nodes">
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">規劃</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">研發</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">驗証</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">量產</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">上市</span>
+                                    </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">版本 2.4.0</div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/RPAC-2658M_la01.png" alt="Win-GRAF PAC" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">Win-GRAF PAC</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">RPAC-2658M</div>
+                            <div class="product-desc">控制器</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-一般">一般</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #1a5580"></span>
+                                    <span>發售</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar-container">
+                            <div class="progress-track"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
+                            
+                            <div class="progress-nodes">
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">規劃</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">研發</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">驗証</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">量產</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">上市</span>
+                                    </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">版本 1.2</div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/XP-9188-IoT_la01.png" alt="Win-GRAF PAC" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">Win-GRAF PAC</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">XP-9x88-IoT</div>
+                            <div class="product-desc">控制器</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-一般">一般</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #1a5580"></span>
+                                    <span>發售</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar-container">
+                            <div class="progress-track"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
+                            
+                            <div class="progress-nodes">
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">規劃</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">研發</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">驗証</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">量產</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">上市</span>
+                                    </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">版本 2.4.0 </div><div class="history-item">備援功能的開發</div>
+                        </div>
+                    
+                </div>
+            
+                        </div>
+                    </div>
+                
+                    <div class="category-section">
+                        <div class="category-header">
+                            <h2>開發軟體</h2>
+                        </div>
+                        <div class="cards-grid">
+                            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/wingraf_syntax.jpg" alt="開發軟體" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">開發軟體</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">Win-GRAF Workbanch</div>
+                            <div class="product-desc">軟體</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-一般">一般</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #1a5580"></span>
+                                    <span>發售</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar-container">
+                            <div class="progress-track"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
+                            
+                            <div class="progress-nodes">
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">規劃</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">研發</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">驗証</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">量產</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">上市</span>
+                                    </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">2026-01:功能增加與優化</div>
+                        </div>
+                    
+                </div>
+            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/wingraf_syntax.jpg" alt="開發軟體" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">開發軟體</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">Win-GRAF Runtime</div>
+                            <div class="product-desc">軟體</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-一般">一般</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #1a5580"></span>
+                                    <span>發售</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar-container">
+                            <div class="progress-track"></div>
+                            <div class="progress-fill" style="width: 100%"></div>
+                            
+                            <div class="progress-nodes">
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">規劃</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">研發</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">驗証</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">量產</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">上市</span>
+                                    </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">2026-01:功能增加與優化</div>
+                        </div>
+                    
+                </div>
+            
+                        </div>
+                    </div>
+                
+                    <div class="category-section">
+                        <div class="category-header">
+                            <h2>專案</h2>
+                        </div>
+                        <div class="cards-grid">
+                            
+                <div class="product-card">
+                    <div class="card-header">
+                        <img src="./RD6產品開發進度戰情室20260414_files/wingraf_syntax.jpg" alt="專案" class="product-image" onerror="this.src=&#39;https://via.placeholder.com/80?text=No+Image&#39;">
+                        <div class="product-info">
+                            <div class="product-title">專案</div>
+                            <div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:&#39;Space Mono&#39;,monospace; margin-bottom:0.4rem;">禾新生醫</div>
+                            <div class="product-desc">控制器</div>
+                            <div class="status-row">
+                                <span class="priority-tag priority-開發">開發</span>
+                                <div class="status-badge">
+                                    <span class="status-dot" style="background: #999"></span>
+                                    <span>開發</span>
+                                </div>
+                                
+                            </div>
+                            
+                                <div class="owner-badges">
+                                    
+                                        <div class="owner-badge" style="background: #B8860B" title="黃建達">
+                                            建達
+                                        </div>
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar-container">
+                            <div class="progress-track"></div>
+                            <div class="progress-fill" style="width: 80%"></div>
+                            
+                            <div class="progress-nodes">
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">現勘</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">討論</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">報價</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot active"></div>
+                                        <span class="node-label active">執行</span>
+                                    </div>
+                                
+                                    <div class="progress-node">
+                                        <div class="node-dot "></div>
+                                        <span class="node-label ">結案</span>
+                                    </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                        <div class="history-section">
+                            <div class="history-item">3/20 雷雕 尚未完成</div><div class="history-item">3/17 焊接*4 完成 進行QC</div><div class="history-item">3/11 改版PCB回廠</div>
+                        </div>
+                    
+                </div>
+            
+                        </div>
+                    </div>
+                </div>
     </div>
 
     <script>
@@ -1447,24 +2315,34 @@
 
             let cards = '';
             entries.forEach(([name, info]) => {
-                const days = Math.floor((today - info.date) / 86400000);
+                // 【修正開始】先將資料日期也強制歸零，避免時區造成的時分秒干擾
+    const compareDate = new Date(info.date);
+    compareDate.setHours(0, 0, 0, 0);
+    
+    // 計算天數差，並使用 Math.round (四捨五入) 取代 Math.floor
+    const days = Math.round((today - compareDate) / 86400000);
+    // 【修正結束】
                 const dateStr = `${info.date.getFullYear()}/${String(info.date.getMonth() + 1).padStart(2, '0')}/${String(info.date.getDate()).padStart(2, '0')}`;
 
                 let borderColor, pillBg, pillColor;
-                if (days <= 14) {
-                    borderColor = 'var(--success)';
-                    pillBg = '#d1fae5'; pillColor = '#065f46';
-                } else if (days <= 30) {
-                    borderColor = 'var(--warning)';
-                    pillBg = '#fef3c7'; pillColor = '#92400e';
-                } else {
-                    borderColor = 'var(--danger)';
-                    pillBg = '#fee2e2'; pillColor = '#991b1b';
-                }
+ // 【修正邏輯】確保 0 天前或負數(未來)都顯示為成功綠色
+    if (days <= 14) { 
+        borderColor = 'var(--success)';
+        pillBg = '#d1fae5'; pillColor = '#065f46';
+    } else if (days <= 30) {
+        borderColor = 'var(--warning)';
+        pillBg = '#fef3c7'; pillColor = '#92400e';
+    } else {
+        borderColor = 'var(--danger)';
+        pillBg = '#fee2e2'; pillColor = '#991b1b';
+    }
 
-                const safeName = escapeHtml(name);
-                const safeColor = sanitizeCssColor(info.color);
-                const initials = escapeHtml(getInitials(name));
+    const safeName = escapeHtml(name);
+    const safeColor = sanitizeCssColor(info.color);
+    const initials = escapeHtml(getInitials(name));
+
+    // 【修正顯示】如果是 0 或是負數，統一顯示為 "0 天前" 或 "今天"
+    const displayDays = days < 0 ? 0 : days;
 
                 cards += `
                     <div class="owner-update-card" data-owner="${safeName}" style="border-left-color:${borderColor}">
@@ -1531,5 +2409,26 @@
             window.open('產品開發進度追蹤_RD9.xlsx', '_blank');
         }
     </script>
-</body>
-</html>
+
+
+<div id="acorn-notes-root"><template shadowrootmode="open"><div id="shadow-root"></div></template></div><div id="ownerTooltip" class="owner-tooltip" style="left: 839px; top: 395px;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;limited&quot;,&quot;isActive&quot;:false,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
