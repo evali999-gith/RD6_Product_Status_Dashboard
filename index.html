@@ -19,7 +19,6 @@
     
     <!-- 安全標頭：防止點擊劫持 -->
     <meta http-equiv="X-Frame-Options" content="DENY">
-    <!--test--><script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head><body data-new-gr-c-s-check-loaded="14.1282.0" data-gr-ext-installed="">&gt;
     
     <!-- 安全標頭：防止 MIME 類型嗅探 -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -31,8 +30,15 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
     <title>RD6產品開發進度戰情室</title>
-    <link href="./RD6產品開發進度戰情室20260414_files/css2" rel="stylesheet">
-    <script src="./RD6產品開發進度戰情室20260414_files/xlsx.full.min.js.下載" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="var s=document.createElement(&#39;script&#39;);s.src=&#39;https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js&#39;;document.head.appendChild(s);"></script>
+    
+    <!-- 使用 Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 使用 XLSX CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
     <style>
         :root {
             --primary: #1a3a6e;
@@ -707,8 +713,8 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
-
-
+</head>
+<body>
     <div class="container">
         <header>
             <div class="header-top">
@@ -2409,26 +2415,5 @@
             window.open('產品開發進度追蹤_RD9.xlsx', '_blank');
         }
     </script>
-
-
-<div id="acorn-notes-root"><template shadowrootmode="open"><div id="shadow-root"></div></template></div><div id="ownerTooltip" class="owner-tooltip" style="left: 839px; top: 395px;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
-      div.grammarly-desktop-integration {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select:none;
-        user-select:none;
-      }
-
-      div.grammarly-desktop-integration:before {
-        content: attr(data-content);
-      }
-    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;limited&quot;,&quot;isActive&quot;:false,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
+</body>
+</html>
