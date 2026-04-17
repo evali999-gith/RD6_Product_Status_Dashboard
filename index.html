@@ -800,7 +800,7 @@
                 <div class="stat-value" style="color: var(--warning);" id="ongoingCount">1</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">已上市</div>
+                <div class="stat-label">已上市系列</div>
                 <div class="stat-value" style="color: var(--success);" id="completedCount">13</div>
             </div>
             <div class="stat-card">
@@ -1464,22 +1464,22 @@
 
         function updateStats() {
             const total = productsData.length;
-            
-            // 進行中的判斷：產品類別的前4個階段，或專案類別的前4個階段
+
+            // 進行中的判斷：名稱為「工作列表」或階段非最後一個
             const ongoing = productsData.filter(p => {
+                if (p.name === '工作列表') return true;
                 const currentStages = getStagesForCategory(p.category, p.name);
                 const stageIndex = currentStages.indexOf(p.stage);
-                // 只要不是最後一個階段，就算進行中
                 return stageIndex >= 0 && stageIndex < currentStages.length - 1;
             }).length;
-            
-            // 已完成的判斷：產品的「上市」或專案的「結案」
+
+            // 已完成的判斷：名稱非「工作列表」且階段為最後一個
             const completed = productsData.filter(p => {
+                if (p.name === '工作列表') return false;
                 const currentStages = getStagesForCategory(p.category, p.name);
                 const lastStage = currentStages[currentStages.length - 1];
                 return p.stage === lastStage;
-            }).length;
-            
+            }).length;            
             const urgent = productsData.filter(p => p.priority === '緊急').length;
 
             document.getElementById('totalCount').textContent = total;
