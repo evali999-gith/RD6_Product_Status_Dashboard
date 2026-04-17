@@ -792,7 +792,7 @@
 
         <div class="stats-grid" id="statsGrid">
             <div class="stat-card">
-                <div class="stat-label">總專案數</div>
+                <div class="stat-label">總項目數</div>
                 <div class="stat-value" style="color: var(--primary);" id="totalCount">14</div>
             </div>
             <div class="stat-card">
@@ -1020,10 +1020,9 @@
 
         function updateSourceIndicator(source) {
             const indicator = document.getElementById('sourceIndicator');
-            const syncInfo = syncCount > 0 ? ` (已執行 ${syncCount} 次)` : '';
             
             if (source === 'google') {
-                indicator.textContent = 'Google Sheets (自動同步)' + syncInfo;
+                indicator.textContent = 'Google Sheets (自動同步)';
                 indicator.className = 'source-badge source-google';
             } else if (source === 'excel') {
                 indicator.textContent = 'Excel 檔案';
