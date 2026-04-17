@@ -1370,13 +1370,7 @@
             const currentStages = getStagesForCategory(product.category, product.name);
             const stageIndex = currentStages.indexOf(product.stage);
             const progressPercent = stageIndex >= 0 ? ((stageIndex + 1) / currentStages.length) * 100 : 0;
-            const isWeeklyWorkSection = /本周工作|本週工作/.test(String(category));
-            const progressSectionClassAttr = isWeeklyWorkSection ? '' : ' class="progress-section"';
-            const progressBarContainerClassAttr = isWeeklyWorkSection ? '' : ' class="progress-bar-container"';
-            const progressTrackClassAttr = isWeeklyWorkSection ? '' : ' class="progress-track"';
-            const progressFillClassAttr = isWeeklyWorkSection ? '' : ' class="progress-fill"';
-            const progressNodesClassAttr = isWeeklyWorkSection ? '' : ' class="progress-nodes"';
-            const progressNodeClassAttr = isWeeklyWorkSection ? '' : ' class="progress-node"';
+            const isWeeklyWorkSection = /週報工作|週報工作|本周工作|本週工作/.test(String(category));
 
             const owners = [];
             if (product.owner1) owners.push({ name: product.owner1, color: product.owner1Color });
@@ -1393,6 +1387,24 @@
             const safePriority = escapeHtml(product.priority);
             const safeStatus = escapeHtml(product.status);
             const safeReleaseDate = escapeHtml(product.releaseDate);
+
+            // 如果是本周工作，則不生成進度條區塊
+            const progressSectionHtml = isWeeklyWorkSection ? '' : `
+                <div class="progress-section">
+                    <div class="progress-bar-container">
+                        <div class="progress-track"></div>
+                        <div class="progress-fill" style="width: ${progressPercent}%"></div>
+                        <div class="progress-nodes">
+                            ${currentStages.map((stage, i) => `
+                                <div class="progress-node">
+                                    <div class="node-dot ${i <= stageIndex ? 'active' : ''}"></div>
+                                    <span class="node-label ${i <= stageIndex ? 'active' : ''}">${escapeHtml(stage)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
 
             return `
                 <div class="product-card">
@@ -1426,27 +1438,7 @@
                             ` : ''}
                         </div>
                     </div>
-                    <div${progressSectionClassAttr}>
-                        <div${progressBarContainerClassAttr}>
-                            <div${progressTrackClassAttr}></div>
-                            <div${progressFillClassAttr} style="width: ${progressPercent}%"></div>
-                            ${isWeeklyWorkSection ? '' : `
-                            <div${progressNodesClassAttr}>
-                                ${currentStages.map((stage, i) => {
-                                    const safeStage = escapeHtml(stage);
-                                    const nodeDotClassAttr = ` class="node-dot ${i <= stageIndex ? 'active' : ''}"`;
-                                    const nodeLabelClassAttr = ` class="node-label ${i <= stageIndex ? 'active' : ''}"`;
-                                    return `
-                                    <div${progressNodeClassAttr}>
-                                        <div${nodeDotClassAttr}></div>
-                                        <span${nodeLabelClassAttr}>${safeStage}</span>
-                                    </div>
-                                `;
-                                }).join('')}
-                            </div>
-                            `}
-                        </div>
-                    </div>
+                    ${progressSectionHtml}
                     ${historyItems.length > 0 ? `
                         <div class="history-section">
                             ${historyItems.map(item => `<div class="history-item">${escapeHtml(item)}</div>`).join('')}
