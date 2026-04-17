@@ -1349,6 +1349,13 @@
                 return;
             }
 
+            // 紀錄類別在原始資料中出現的順序
+            const categoryOrder = [];
+            productsData.forEach(p => {
+                const cat = p.category || '其他';
+                if (!categoryOrder.includes(cat)) categoryOrder.push(cat);
+            });
+
             const grouped = {};
             filtered.forEach(product => {
                 const cat = product.category || '其他';
@@ -1356,7 +1363,7 @@
                 grouped[cat].push(product);
             });
 
-            // 根據篩選條件決定排序：僅在選擇「進行中」時將工作列表排到最後
+            // 根據篩選條件決定排序
             const isFilterOngoing = progressFilter === '進行中';
 
             // 排序類別
@@ -1367,7 +1374,8 @@
                     if (isAWeekly && !isBWeekly) return 1;
                     if (!isAWeekly && isBWeekly) return -1;
                 }
-                return a.localeCompare(b);
+                // 預設按照原始表單順序
+                return categoryOrder.indexOf(a) - categoryOrder.indexOf(b);
             });
 
             let html = '';
@@ -1380,6 +1388,9 @@
                         if (a.name !== '工作列表' && b.name === '工作列表') return -1;
                         return 0;
                     });
+                } else {
+                    // 非「進行中」篩選時，按照原始 productsData 中的順序
+                    sortedProducts.sort((a, b) => productsData.indexOf(a) - productsData.indexOf(b));
                 }
 
                 html += `
