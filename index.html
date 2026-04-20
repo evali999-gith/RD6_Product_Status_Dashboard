@@ -67,7 +67,7 @@
             font-family: 'Noto Sans TC', sans-serif;
             background: linear-gradient(160deg,#4682b4 0%, #35628a 100%);
             min-height: 100vh;
-            padding: 2rem;
+            padding: 1rem 2rem;
             color: var(--gray-900);
         }
 
@@ -80,8 +80,8 @@
             background: rgba(250, 248, 244, 0.97);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+            padding: 1rem 2rem 0.6rem 2rem;
+            margin-bottom: 1rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(184, 150, 12, 0.3);
             border-top: 3px solid #b8960c;
             animation: slideDown 0.6s ease-out;
@@ -96,13 +96,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .title-area {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         h1 {
             font-size: 2.5rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #1a3a6e 0%, #b8960c 60%, #d4af37 100%);
+            background: linear-gradient(135deg, #4169E1 0%, #4169E1 60%, #b8960c 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -167,7 +173,9 @@
             gap: 0.5rem;
             font-size: 0.85rem;
             color: var(--gray-600);
-            margin-bottom: 1rem;
+            background: rgba(0,0,0,0.03);
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
         }
 
         .source-badge {
@@ -189,13 +197,55 @@
 
         .toolbar {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
+            align-items: center;
+            background: white;
+            padding: 0.6rem 1rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 0.2rem;
+        }
+
+        .stats-compact {
+            display: flex;
+            gap: 0.6rem;
+            padding-right: 0.8rem;
+            border-right: 2px solid var(--gray-200);
+        }
+
+        .stat-card-compact {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            min-width: 105px;
+            align-items: center;
+        }
+
+        .stat-label-compact {
+            font-size: 0.7rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .stat-value-compact {
+            font-size: 1.3rem;
+            font-weight: 900;
+            font-family: 'Space Mono', monospace;
+            line-height: 1.1;
         }
 
         .search-box {
-            flex: 1;
-            min-width: 250px;
+            flex: 1.2;
+            min-width: 200px;
             position: relative;
         }
 
@@ -262,34 +312,6 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: rgba(250, 248, 244, 0.97);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-bottom: 2px solid rgba(184, 150, 12, 0.25);
-            animation: fadeIn 0.6s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .stat-card:nth-child(1) { animation-delay: 0.1s; }
-        .stat-card:nth-child(2) { animation-delay: 0.2s; }
-        .stat-card:nth-child(3) { animation-delay: 0.3s; }
-        .stat-card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .stat-label {
@@ -724,8 +746,12 @@
     <div class="container">
         <header>
             <div class="header-top">
-                <div>
+                <div class="title-area">
                     <h1>RD6產品開發進度戰情室</h1>
+                    <div class="data-source-info">
+                        <span>資料來源：</span>
+                        <span class="source-badge source-google" id="sourceIndicator">Google Sheets (自動同步)</span>
+                    </div>
                 </div>
                 <div class="upload-section">
                     <button onclick="reloadGoogleSheets()" class="btn btn-warning" id="reloadBtn">
@@ -743,12 +769,23 @@
                 </div>
             </div>
             
-            <div class="data-source-info">
-                <span>資料來源：</span>
-                <span class="source-badge source-google" id="sourceIndicator">Google Sheets (自動同步)</span>
-            </div>
-            
             <div class="toolbar">
+                <!-- 緊湊統計數據區塊 -->
+                <div class="stats-compact">
+                    <div class="stat-card-compact">
+                        <div class="stat-label-compact">總項目數</div>
+                        <div class="stat-value-compact" style="color: var(--primary);" id="totalCount">0</div>
+                    </div>
+                    <div class="stat-card-compact">
+                        <div class="stat-label-compact">進行中</div>
+                        <div class="stat-value-compact" style="color: var(--warning);" id="ongoingCount">0</div>
+                    </div>
+                    <div class="stat-card-compact">
+                        <div class="stat-label-compact">已上市系列</div>
+                        <div class="stat-value-compact" style="color: var(--success);" id="completedCount">0</div>
+                    </div>
+                </div>
+
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
                     <input type="text" id="searchInput" placeholder="搜尋產品名稱或編號..." onkeyup="filterProducts()">
@@ -760,7 +797,8 @@
                         <option value="進行中">進行中</option>
                         <option value="已上市">已上市</option>
                     </select>
-                    <select id="priorityFilter" onchange="filterProducts()">
+                    <!-- 隱藏但保留原始欄位以維持 JS 運作 -->
+                    <select id="priorityFilter" onchange="filterProducts()" style="display: none;">
                         <option value="">全部優先權</option>
                         <option value="緊急">緊急</option>
                         <option value="重要">重要</option>
@@ -768,7 +806,7 @@
                         <option value="次要">次要</option>
                         <option value="暫停">暫停</option>
                     </select>
-                    <select id="statusFilter" onchange="filterProducts()">
+                    <select id="statusFilter" onchange="filterProducts()" style="display: none;">
                         <option value="">全部狀態</option>
                         <option value="研發">研發</option>
                         <option value="樣品">樣品</option>
@@ -777,7 +815,7 @@
                         <option value="停產">停產</option>
                         <option value="暫停出貨">暫停出貨</option>
                     </select>
-                    <select id="stageFilter" onchange="filterProducts()">
+                    <select id="stageFilter" onchange="filterProducts()" style="display: none;">
                         <option value="">全部階段</option>
                         <!-- 產品階段 -->
                         <option value="規劃">規劃</option>
@@ -796,24 +834,8 @@
             </div>
         </header>
 
-        <div class="stats-grid" id="statsGrid">
-            <div class="stat-card">
-                <div class="stat-label">總項目數</div>
-                <div class="stat-value" style="color: var(--primary);" id="totalCount">14</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">進行中</div>
-                <div class="stat-value" style="color: var(--warning);" id="ongoingCount">1</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">已上市系列</div>
-                <div class="stat-value" style="color: var(--success);" id="completedCount">13</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">緊急項目</div>
-                <div class="stat-value" style="color: var(--danger);" id="urgentCount">0</div>
-            </div>
-        </div>
+        <!-- 隱藏緊急項目統計以維持 JS 運作 -->
+        <div style="display: none;" id="urgentCount">0</div>
 
         <div id="ownerTracker" class="owner-tracker" style="display: block;">
                 <div class="owner-tracker-title">📋 負責人更新狀態（由舊到新）</div>
