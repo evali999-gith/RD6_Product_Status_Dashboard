@@ -611,20 +611,21 @@
         }
 
         .owner-cards-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.65rem;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.6rem;
         }
 
         .owner-update-card {
             display: flex;
             align-items: center;
-            gap: 0.65rem;
-            padding: 0.6rem 0.9rem;
+            gap: 0.45rem;
+            padding: 0.6rem 0.6rem;
             background: var(--gray-50);
             border-radius: 12px;
             border-left: 4px solid;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            min-width: 0;
         }
 
         .owner-update-card:hover {
@@ -633,13 +634,13 @@
         }
 
         .owner-update-avatar {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: white;
             flex-shrink: 0;
@@ -648,13 +649,13 @@
 
         .owner-update-name {
             font-weight: 700;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             color: var(--gray-800);
             white-space: nowrap;
         }
 
         .owner-update-date {
-            font-size: 0.75rem;
+            font-size: 0.68rem;
             font-family: 'Space Mono', monospace;
             color: var(--gray-600);
             margin-top: 0.1rem;
@@ -662,12 +663,12 @@
         }
 
         .owner-update-days {
-            font-size: 0.72rem;
+            font-size: 0.65rem;
             font-weight: 700;
-            padding: 0.2rem 0.55rem;
+            padding: 0.15rem 0.4rem;
             border-radius: 6px;
             white-space: nowrap;
-            margin-left: 0.25rem;
+            margin-left: auto;
         }
 
         .owner-tooltip {
@@ -704,6 +705,10 @@
             margin-top: 0.3rem;
         }
 
+        @media (max-width: 1200px) {
+            .owner-cards-row { grid-template-columns: repeat(3, 1fr); }
+        }
+
         @media (max-width: 768px) {
             body { padding: 1rem; }
             h1 { font-size: 1.75rem; }
@@ -711,6 +716,7 @@
             .upload-section { flex-wrap: wrap; width: 100%; }
             .cards-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .owner-cards-row { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
