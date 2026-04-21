@@ -80,8 +80,8 @@
             background: rgba(250, 248, 244, 0.97);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 1rem 2rem 0.6rem 2rem;
-            margin-bottom: 1rem;
+            padding: 1rem 2rem 0.4rem 2rem;
+            margin-bottom: 0.8rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(184, 150, 12, 0.3);
             border-top: 3px solid #b8960c;
             animation: slideDown 0.6s ease-out;
@@ -96,23 +96,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.4rem;
         }
 
         .title-area {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.45rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #4169E1 0%, #4169E1 60%, #b8960c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
+            color: #4169E1;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.18);
+            letter-spacing: 0.02em;
+            margin-right: 0.5rem;
+            line-height: 1.2;
         }
 
         .upload-section {
@@ -200,19 +200,19 @@
             gap: 0.8rem;
             flex-wrap: wrap;
             align-items: center;
-            background: white;
-            padding: 0.6rem 1rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid var(--gray-200);
-            margin-bottom: 0.2rem;
+            background: transparent;
+            padding: 0.4rem 0rem;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            margin-bottom: 0rem;
         }
 
         .stats-compact {
             display: flex;
             gap: 0.6rem;
             padding-right: 0.8rem;
-            border-right: 2px solid var(--gray-200);
+            border-right: 1px solid var(--gray-300);
         }
 
         .stat-card-compact {
@@ -220,11 +220,17 @@
             flex-direction: column;
             gap: 0.1rem;
             padding: 0.4rem 0.8rem;
-            background: var(--gray-50);
+            background: white;
             border: 2px solid var(--gray-200);
             border-radius: 12px;
             min-width: 105px;
             align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .stat-card-compact:hover {
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
         }
 
         .stat-label-compact {
@@ -643,9 +649,10 @@
             align-items: center;
             gap: 0.45rem;
             padding: 0.6rem 0.6rem;
-            background: var(--gray-50);
+            background: white;
             border-radius: 12px;
-            border-left: 4px solid;
+            border: 2px solid var(--gray-200);
+            border-left: 5px solid;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             min-width: 0;
         }
@@ -774,15 +781,15 @@
                 <div class="stats-compact">
                     <div class="stat-card-compact">
                         <div class="stat-label-compact">總項目數</div>
-                        <div class="stat-value-compact" style="color: var(--primary);" id="totalCount">0</div>
+                        <div class="stat-value-compact" style="color: #2563eb;" id="totalCount">0</div>
                     </div>
                     <div class="stat-card-compact">
                         <div class="stat-label-compact">進行中</div>
-                        <div class="stat-value-compact" style="color: var(--warning);" id="ongoingCount">0</div>
+                        <div class="stat-value-compact" style="color: #d97706;" id="ongoingCount">0</div>
                     </div>
                     <div class="stat-card-compact">
                         <div class="stat-label-compact">已上市系列</div>
-                        <div class="stat-value-compact" style="color: var(--success);" id="completedCount">0</div>
+                        <div class="stat-value-compact" style="color: #16a34a;" id="completedCount">0</div>
                     </div>
                 </div>
 
@@ -1484,7 +1491,7 @@
                              onerror="this.src='https://via.placeholder.com/80?text=No+Image'">
                         <div class="product-info">
                             <div class="product-title">${safeName}</div>
-                            ${safeId ? `<div style="font-size:1.05rem; color:var(--gray-600); font-weight:700; font-family:'Space Mono',monospace; margin-bottom:0.4rem;">${safeId}</div>` : ''}
+                            ${safeId ? `<div style="font-size:1.05rem; color:#2563eb; font-weight:700; font-family:'Space Mono',monospace; margin-bottom:0.4rem;">${safeId}</div>` : ''}
                             <div class="product-desc">${safeDescription}</div>
                             <div class="status-row">
                                 <span class="priority-tag priority-${safePriority}">${safePriority}</span>
@@ -1610,16 +1617,16 @@
     // 【修正結束】
                 const dateStr = `${info.date.getFullYear()}/${String(info.date.getMonth() + 1).padStart(2, '0')}/${String(info.date.getDate()).padStart(2, '0')}`;
 
-                let borderColor, pillBg, pillColor;
+                let statusColor, pillBg, pillColor;
  // 【修正邏輯】確保 0 天前或負數(未來)都顯示為成功綠色
     if (days <= 14) { 
-        borderColor = 'var(--success)';
+        statusColor = 'var(--success)';
         pillBg = '#d1fae5'; pillColor = '#065f46';
     } else if (days <= 30) {
-        borderColor = 'var(--warning)';
+        statusColor = 'var(--warning)';
         pillBg = '#fef3c7'; pillColor = '#92400e';
     } else {
-        borderColor = 'var(--danger)';
+        statusColor = 'var(--danger)';
         pillBg = '#fee2e2'; pillColor = '#991b1b';
     }
 
@@ -1631,13 +1638,13 @@
     const displayDays = days < 0 ? 0 : days;
 
                 cards += `
-                    <div class="owner-update-card" data-owner="${safeName}" style="border-left-color:${borderColor}">
+                    <div class="owner-update-card" data-owner="${safeName}" style="border-left-color:${statusColor}">
                         <div class="owner-update-avatar" style="background:${safeColor}">${initials}</div>
                         <div>
                             <div class="owner-update-name">${safeName}</div>
                             <div class="owner-update-date">${dateStr}</div>
                         </div>
-                        <div class="owner-update-days" style="background:${pillBg};color:${pillColor}">${days} 天前</div>
+                        <div class="owner-update-days" style="background:${pillBg};color:${pillColor}">${displayDays} 天前</div>
                     </div>`;
             });
 
