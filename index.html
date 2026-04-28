@@ -29,7 +29,7 @@
     <!-- 安全標頭：Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
-    <title>RD6產品開發進度戰情室</title>
+    <title>RD6產品開發工作進度</title>
     
     <!-- 使用 Google Fonts CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- XLSX 函式庫：支援本地與多重 CDN 備援 -->
-    <script src="./RD6產品開發進度戰情室20260414_files/xlsx.full.min.js.下載" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onerror=function(){var s2=document.createElement('script');s2.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';document.head.appendChild(s2);};document.head.appendChild(s);"></script>
+    <script src="./RD6產品開發工作進度20260414_files/xlsx.full.min.js.下載" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onerror=function(){var s2=document.createElement('script');s2.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';document.head.appendChild(s2);};document.head.appendChild(s);"></script>
 
     <style>
         :root {
@@ -754,7 +754,7 @@
         <header>
             <div class="header-top">
                 <div class="title-area">
-                    <h1>RD6產品開發進度戰情室</h1>
+                    <h1>RD6產品開發工作進度</h1>
                     <div class="data-source-info">
                         <span>資料來源：</span>
                         <span class="source-badge source-google" id="sourceIndicator">Google Sheets (自動同步)</span>
@@ -770,8 +770,8 @@
                             📁 上傳 Excel 檔案
                         </label>
                     </div>
-                    <button onclick="downloadTemplate()" class="btn btn-success">
-                        📥 下載範本
+                    <button onclick="openDataEntry()" class="btn btn-success">
+                        ✏️ 填寫資料
                     </button>
                 </div>
             </div>
@@ -1698,8 +1698,48 @@
             if (tip) tip.classList.remove('visible');
         }
 
-        function downloadTemplate() {
-            window.open('產品開發進度追蹤_RD9.xlsx', '_blank');
+        function openDataEntry() {
+            const password = prompt("請輸入密碼：");
+            if (password === "3577rd6") {
+                window.open("https://docs.google.com/spreadsheets/d/1Zfx61xQJ0oaWaKbmisWAbeFcT67sToU3uT9M13lb4S0/edit?usp=sharing", "_blank");
+            } else if (password !== null) {
+                // 建立錯誤提示視窗
+                const errorModal = document.createElement('div');
+                errorModal.style.position = 'fixed';
+                errorModal.style.top = '50%';
+                errorModal.style.left = '50%';
+                errorModal.style.transform = 'translate(-50%, -50%)';
+                errorModal.style.backgroundColor = '#fff';
+                errorModal.style.padding = '30px 50px';
+                errorModal.style.borderRadius = '16px';
+                errorModal.style.boxShadow = '0 20px 60px rgba(0,0,0,0.3)';
+                errorModal.style.zIndex = '10001';
+                errorModal.style.textAlign = 'center';
+                errorModal.style.borderTop = '5px solid #8b1a1a';
+                
+                errorModal.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 15px;">❌</div>
+                    <div style="font-size: 1.5rem; font-weight: 900; color: #8b1a1a; font-family: 'Noto Sans TC', sans-serif;">密碼錯誤!</div>
+                `;
+                
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.top = '0';
+                overlay.style.left = '0';
+                overlay.style.width = '100%';
+                overlay.style.height = '100%';
+                overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+                overlay.style.backdropFilter = 'blur(4px)';
+                overlay.style.zIndex = '10000';
+                
+                document.body.appendChild(overlay);
+                document.body.appendChild(errorModal);
+                
+                setTimeout(() => {
+                    if (document.body.contains(errorModal)) document.body.removeChild(errorModal);
+                    if (document.body.contains(overlay)) document.body.removeChild(overlay);
+                }, 3000);
+            }
         }
     </script>
 </body>
